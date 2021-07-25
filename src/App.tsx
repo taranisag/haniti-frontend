@@ -16,11 +16,11 @@ const error = (result: any) => {
 };
 
 function App() {
-  useInitialize();
-  const { onItemClick, itemPopupRef } = useItem();
+  const { onSvgLoaded } = useInitialize();
+  const { onItemClick, showPopup, onClick } = useItem();
   useEffect(() => {
     // login(sucess, error); // TODO: remove only for test
-    app.get("/get-svg").then((result) => console.log(result));
+    // app.get("/get-svg").then((result) => console.log(result));
   }, []);
 
   return (
@@ -33,8 +33,13 @@ function App() {
         alignItems: "center",
       }}
     >
-      <ReactSVG src={plan} onClick={onItemClick} />
-      <ItemPopup itemPopupRef={itemPopupRef} />
+      <ReactSVG
+        src="https://firebasestorage.googleapis.com/v0/b/haniti-3aeed.appspot.com/o/plan.svg?alt=media"
+        onClick={onItemClick}
+        afterInjection={onSvgLoaded}
+      />
+
+      <ItemPopup showPopup={showPopup} onClick={onClick} />
     </div>
   );
 }

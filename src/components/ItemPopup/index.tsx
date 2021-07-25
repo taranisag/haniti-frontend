@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import Popup from "reactjs-popup";
-import { PopupActions } from "../../hooks/useItem";
+import { ShowPopupType } from "../../hooks/useItem";
 
 const Body = styled.div`
-  padding: 40px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 20px;
+  background-color: #ffffff;
+
+  > button {
+    margin: 10px 0;
+  }
 `;
 
 const ItemPopup: React.FC<{
-  itemPopupRef: React.Ref<any>;
-}> = ({ itemPopupRef }) => {
+  showPopup: ShowPopupType;
+  onClick: (id: any) => void;
+}> = ({ showPopup, onClick }) => {
+  const ref = useRef<any>();
+
+  if (!showPopup) {
+    return null;
+  }
+
   return (
     <Popup
-      ref={itemPopupRef}
+      ref={ref}
       position="center center"
-      closeOnDocumentClick={false}
+      defaultOpen
+      onClose={() => onClick(showPopup.fallback)}
     >
       <Body>
-        <button>Bottom</button>
-        <button>Top</button>
+        <button onClick={() => onClick(showPopup.topId)}>Top</button>
+        <button onClick={() => onClick(showPopup.bottomId)}>Bottom</button>
       </Body>
     </Popup>
   );
