@@ -16,7 +16,9 @@
     "lodash.mergewith": "^4.6.2",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
+    "react-confirm": "^0.1.24",
     "react-dom": "^17.0.2",
+    "react-modal": "^3.14.3",
     "react-scripts": "4.0.3",
     "react-svg": "^14.0.6",
     "reactjs-popup": "^2.0.5",
@@ -55,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-modal": "^3.12.1",
     "@types/styled-components": "^5.1.11"
   }
 }
