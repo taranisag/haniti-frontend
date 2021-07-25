@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { ReactSVG } from "react-svg";
 import firebase from "firebase";
-import logo from "./parking_test.svg";
 import "./App.css";
 import { app } from "./services/api";
+import useItem from "./hooks/useItem";
+import useInitialize from "./hooks/useInitialize";
+import ItemPopup from "./components/ItemPopup";
 
 const sucess = (result: any) => {
   app.setToken(result.credential.accessToken);
@@ -27,19 +29,30 @@ messaging.getToken({ vapidKey: process.env.REACT_APP_PUSH_KEY_PAIR }).then((curr
 });
 
 function App() {
+  const { onSvgLoaded } = useInitialize();
+  const { onItemClick, showPopup, onClick } = useItem();
   useEffect(() => {
     // login(sucess, error); // TODO: remove only for test
-    app.get("/get-svg").then((result) => console.log(result));
+    // app.get("/get-svg").then((result) => console.log(result));
   }, []);
+
   return (
     <div
       style={{
+        width: "100vw",
+        height: "100hw",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <ReactSVG src={logo} onClick={(e) => console.log(e)} />
+      <ReactSVG
+        src="https://firebasestorage.googleapis.com/v0/b/haniti-3aeed.appspot.com/o/plan.svg?alt=media"
+        onClick={onItemClick}
+        afterInjection={onSvgLoaded}
+      />
+
+      <ItemPopup showPopup={showPopup} onClick={onClick} />
     </div>
   );
 }
