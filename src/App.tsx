@@ -7,14 +7,6 @@ import useInitialize from "./hooks/useInitialize";
 import ItemPopup from "./components/ItemPopup";
 import {firebaseConfig} from "./services/login";
 
-const sucess = (result: any) => {
-  app.setToken(result.credential.accessToken);
-  console.log(result);
-};
-const error = (result: any) => {
-  console.error(result);
-};
-
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
