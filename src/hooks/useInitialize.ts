@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import { useCallback, useEffect, useState } from "react";
 import {
   getElementById,

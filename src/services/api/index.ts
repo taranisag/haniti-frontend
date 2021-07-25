@@ -1,4 +1,4 @@
-// eslint-disable-next-line
+// eslint-disable-no-unused-vars
 import axios from "axios";
 import { stringify } from "query-string";
 import mergeWith from "lodash.mergewith";
