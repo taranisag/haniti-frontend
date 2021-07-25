@@ -2,13 +2,13 @@ importScripts('https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.8.0/firebase-messaging.js');
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_ID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+    apiKey: "AIzaSyDT2JI1cL_r1UVvmp4OKSK4jvRHyRjWrtM",
+    authDomain: "haniti-3aeed.firebaseapp.com",
+    projectId: "haniti-3aeed",
+    storageBucket: "haniti-3aeed.appspot.com",
+    messagingSenderId: "283913550582",
+    appId: "1:283913550582:web:b385fde13a5fe3e18c4ad7",
+    measurementId: "G-MBK0LV4WQH",
 };
 
 firebase.initializeApp(firebaseConfig);
