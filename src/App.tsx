@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import { login } from "./services/login";
+import firebase from "firebase";
 import { app } from "./services/api";
 import useItem from "./hooks/useItem";
 import useInitialize from "./hooks/useInitialize";
 import ItemPopup from "./components/ItemPopup";
-import plan from "./plan.svg";
+import {firebaseConfig} from "./services/login";
 
 const sucess = (result: any) => {
   app.setToken(result.credential.accessToken);
@@ -14,6 +14,23 @@ const sucess = (result: any) => {
 const error = (result: any) => {
   console.error(result);
 };
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+const messaging = firebase.messaging();
+
+messaging.getToken({ vapidKey: process.env.REACT_APP_PUSH_KEY_PAIR }).then((currentToken) => {
+    if (currentToken) {
+        console.log(`currentToken is: ${currentToken}`);
+        app.put("/push-token", {pushToken: currentToken}).then((result) => console.log(result));
+    } else {
+        // Show permission request UI
+        console.log('No registration token available. Request permission to generate one.');
+    }
+}).catch((err) => {
+    console.log('An error occurred while retrieving token. ', err);
+});
 
 function App() {
   const { onSvgLoaded } = useInitialize();
