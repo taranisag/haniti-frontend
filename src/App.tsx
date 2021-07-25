@@ -45,7 +45,7 @@ function App() {
         onItemClick(event);
       }, 1000);
     }
-  }, [event, user]);
+  }, [event, user, onItemClick, setSvgIsReady]);
 
   return (
     <div
