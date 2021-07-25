@@ -1,27 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactSVG } from "react-svg";
-import { login } from "./services/login";
-import { app } from "./services/api";
+import useLogin from "./hooks/useLogin";
 import useItem from "./hooks/useItem";
 import useInitialize from "./hooks/useInitialize";
 import ItemPopup from "./components/ItemPopup";
-import plan from "./plan.svg";
-
-const sucess = (result: any) => {
-  app.setToken(result.credential.accessToken);
-  console.log(result);
-};
-const error = (result: any) => {
-  console.error(result);
-};
 
 function App() {
-  const { onSvgLoaded } = useInitialize();
-  const { onItemClick, showPopup, onClick } = useItem();
+  const [event, setEvent] = useState();
+  const [user, login] = useLogin();
+  const { onSvgLoaded, setSvgIsReady } = useInitialize();
+  const { onItemClick, showPopup, onClick } = useItem(
+    user,
+    login,
+    setEvent,
+    setSvgIsReady
+  );
+  const show = !event && (user || !user);
+
   useEffect(() => {
-    login(sucess, error); // TODO: remove only for test
-    // app.get("/get-svg").then((result) => console.log(result));
-  }, []);
+    if (user && event) {
+      setEvent(undefined);
+      setSvgIsReady(true);
+      setTimeout(() => {
+        onItemClick(event);
+      }, 1000);
+    }
+  }, [event, user]);
 
   return (
     <div
@@ -33,11 +37,13 @@ function App() {
         alignItems: "center",
       }}
     >
-      <ReactSVG
-        src="https://firebasestorage.googleapis.com/v0/b/haniti-3aeed.appspot.com/o/plan.svg?alt=media"
-        onClick={onItemClick}
-        afterInjection={onSvgLoaded}
-      />
+      {show && (
+        <ReactSVG
+          src="https://firebasestorage.googleapis.com/v0/b/haniti-3aeed.appspot.com/o/plan.svg?alt=media"
+          onClick={onItemClick}
+          afterInjection={onSvgLoaded}
+        />
+      )}
 
       <ItemPopup showPopup={showPopup} onClick={onClick} />
     </div>

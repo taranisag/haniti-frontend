@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import Popup from "reactjs-popup";
+import Modal from "react-modal";
 import { ShowPopupType } from "../../hooks/useItem";
 
 const Body = styled.div`
@@ -26,17 +26,24 @@ const ItemPopup: React.FC<{
   }
 
   return (
-    <Popup
+    <Modal
+      style={{
+        content: { width: "30vw", height: "100px" },
+        overlay: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        },
+      }}
       ref={ref}
-      position="center center"
-      defaultOpen
-      onClose={() => onClick(showPopup.fallback)}
+      isOpen
+      onRequestClose={() => onClick(showPopup.fallback)}
     >
       <Body>
         <button onClick={() => onClick(showPopup.topId)}>Top</button>
         <button onClick={() => onClick(showPopup.bottomId)}>Bottom</button>
       </Body>
-    </Popup>
+    </Modal>
   );
 };
 

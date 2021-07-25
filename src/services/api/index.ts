@@ -59,7 +59,7 @@ export class ApiServices {
   public setToken(token: string) {
     this._settings.headers = {
       ...this._settings.headers,
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     };
   }
 
@@ -70,7 +70,7 @@ export class ApiServices {
     };
   }
 
-  public request<T>(
+  public request(
     endpoint: string,
     { params, $$endpoint, ...settings }: { [key: string]: any } = {}
   ): Promise<any> {
@@ -87,11 +87,11 @@ export class ApiServices {
     });
   }
 
-  public get<T>(endpoint: string, settings?: { [key: string]: any }) {
+  public get(endpoint: string, settings?: { [key: string]: any }) {
     return this.request(endpoint, { method: "get", ...settings });
   }
 
-  public delete<T>(endpoint: string, settings?: { [key: string]: any }) {
+  public delete(endpoint: string, settings?: { [key: string]: any }) {
     return this.request(endpoint, { method: "delete", ...settings });
   }
 
@@ -107,4 +107,4 @@ export class ApiServices {
     return this.request(endpoint, { method: "patch", data, ...settings });
   }
 }
-export const app = new ApiServices();
+export const api = new ApiServices();
