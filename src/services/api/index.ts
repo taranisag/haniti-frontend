@@ -2,7 +2,7 @@ import axios from "axios";
 import { stringify } from "query-string";
 import mergeWith from "lodash.mergewith";
 
-const apiUrl = "/api";
+const apiUrl = "https://haniti-3aeed.appspot.com";
 
 export interface ISettings {
   headers?: { [key: string]: string | undefined };
@@ -59,14 +59,14 @@ export class ApiServices {
   public setToken(token: string) {
     this._settings.headers = {
       ...this._settings.headers,
-      "X-CSRFToken": token,
+      Authorization: `Bearer ${token}`,
     };
   }
 
   public unsetToken() {
     this._settings.headers = {
       ...this._settings.headers,
-      "X-CSRFToken": undefined,
+      Authorization: undefined,
     };
   }
 
@@ -107,3 +107,4 @@ export class ApiServices {
     return this.request(endpoint, { method: "patch", data, ...settings });
   }
 }
+export const app = new ApiServices();

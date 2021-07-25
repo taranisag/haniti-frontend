@@ -3,17 +3,20 @@ import { ReactSVG } from "react-svg";
 import { login } from "./services/login";
 import logo from "./parking_test.svg";
 import "./App.css";
+import { app } from "./services/api";
 
 const sucess = (result: any) => {
-  console.log("result", result);
+  app.setToken(result.credential.accessToken);
+  console.log(result);
 };
 const error = (result: any) => {
-  console.log("result", result);
+  console.error(result);
 };
 
 function App() {
   useEffect(() => {
-    login(sucess, error);
+    // login(sucess, error); // TODO: remove only for test
+    app.get("/get-svg").then((result) => console.log(result));
   }, []);
   return (
     <div
