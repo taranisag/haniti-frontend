@@ -102,7 +102,7 @@ export default (user: any, login: any, setEvent: any, setSvgIsReady: any) => {
 
       setShowPopup({ topId, bottomId, fallback: mineItem?.id });
     },
-    [user, login]
+    [user, login, patch, setEvent, setSvgIsReady]
   );
 
   const onClick = useCallback(
