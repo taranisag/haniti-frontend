@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="parking test.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.3387191"
+     inkscape:cx="340.9976"
+     inkscape:cy="188.61313"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient872"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop870" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient872"
+       id="linearGradient874"
+       x1="3.3598659"
+       y1="60.576407"
+       x2="206.92821"
+       y2="60.576407"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke-width:1.665;stroke:url(#linearGradient874);stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31"
+       width="203.56834"
+       height="114.43308"
+       x="3.3598659"
+       y="3.3598659" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 206.73057,41.701863 c 0,0 3.55751,-38.1443578 -27.07657,-38.1443578 m -22.33322,23.3214228 13.07982,0.09882 c 13.99474,0.151337 11.61267,10.163096 11.26543,35.575049 l 0,19.665099"
+       id="path957"
+       sodipodi:nodetypes="ccccc" />
+    <rect
+       style="fill:none;stroke-width:1.565;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2189"
+       width="31.622267"
+       height="12.846546"
+       x="143.88132"
+       y="31.819906" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:3.99, 0.665;stroke-dashoffset:0;stroke-opacity:1"
+       id="taranis_park_02_B"
+       width="24.507263"
+       height="12.846544"
+       x="153.368"
+       y="35.970329" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:3.99, 0.665;stroke-dashoffset:0;stroke-opacity:1"
+       id="taranis_park_01_T"
+       width="24.507263"
+       height="12.846544"
+       x="150.99632"
+       y="31.819906" />
+    <rect
+       style="fill:none;stroke-width:1.565;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2189-3"
+       width="31.622267"
+       height="12.846546"
+       x="143.51743"
+       y="52.572021" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:3.99, 0.665;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect2193-4"
+       width="24.507263"
+       height="12.846544"
+       x="153.0041"
+       y="56.722443" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:3.99, 0.665;stroke-dashoffset:0;stroke-opacity:1"
+       id="taranis_park_03_T"
+       width="24.507263"
+       height="12.846544"
+       x="150.63243"
+       y="52.572021" />
+    <rect
+       style="fill:none;stroke-width:1.565;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2189-3-7"
+       width="31.622267"
+       height="12.846546"
+       x="143.71506"
+       y="75.10289" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:3.99, 0.665;stroke-dashoffset:0;stroke-opacity:1"
+       id="taranis_park_06_B"
+       width="24.507263"
+       height="12.846544"
+       x="153.20174"
+       y="79.253311" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:3.99, 0.665;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect2193-5"
+       width="24.507263"
+       height="12.846544"
+       x="150.83006"
+       y="75.10289" />
+    <rect
+       style="fill:none;stroke-width:1.565;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2189-3-7-5"
+       width="31.622267"
+       height="12.846546"
+       x="87.783173"
+       y="31.22699" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:3.99, 0.665;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect2193-8"
+       width="24.507263"
+       height="12.846544"
+       x="97.269852"
+       y="35.377411" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:3.99, 0.665;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect2193-7"
+       width="24.507263"
+       height="12.846544"
+       x="94.898178"
+       y="31.22699" />
+  </g>
+</svg>
