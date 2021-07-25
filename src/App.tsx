@@ -15,7 +15,7 @@ const messaging = firebase.messaging();
 messaging.getToken({ vapidKey: process.env.REACT_APP_PUSH_KEY_PAIR }).then((currentToken) => {
     if (currentToken) {
         console.log(`currentToken is: ${currentToken}`);
-        app.put("/push-token", {pushToken: currentToken}).then((result) => console.log(result));
+        app.put(`/push-token/${currentToken}`).then((result) => console.log(result));
     } else {
         // Show permission request UI
         console.log('No registration token available. Request permission to generate one.');
