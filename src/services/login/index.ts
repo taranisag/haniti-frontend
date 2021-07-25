@@ -17,7 +17,9 @@ export const login = (
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
+
   const provider = new firebase.auth.GoogleAuthProvider();
+
   firebase
     .auth()
     .signInWithPopup(provider)

@@ -19,7 +19,7 @@ function App() {
   const { onSvgLoaded } = useInitialize();
   const { onItemClick, showPopup, onClick } = useItem();
   useEffect(() => {
-    // login(sucess, error); // TODO: remove only for test
+    login(sucess, error); // TODO: remove only for test
     // app.get("/get-svg").then((result) => console.log(result));
   }, []);
 
