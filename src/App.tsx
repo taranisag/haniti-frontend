@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { ReactSVG } from "react-svg";
 import firebase from "firebase";
 import useLogin from "./hooks/useLogin";
@@ -7,6 +8,14 @@ import useInitialize from "./hooks/useInitialize";
 import ItemPopup from "./components/ItemPopup";
 import { firebaseConfig } from "./services/firebase";
 import { api } from "./services/api";
+
+const Body = styled.div`
+  width: 100vw;
+  height: 100hw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -33,9 +42,10 @@ messaging
   });
 
 function App() {
+  const [loaded, setLoaded] = useState(false);
   const [event, setEvent] = useState();
   const [user, login] = useLogin();
-  const { onSvgLoaded, setSvgIsReady } = useInitialize();
+  const { onSvgLoaded, setSvgIsReady } = useInitialize(setLoaded);
   const { onItemClick, showPopup, onClick } = useItem(
     user,
     login,
@@ -55,33 +65,32 @@ function App() {
   }, [event, user, onItemClick, setSvgIsReady]);
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100hw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      {show && (
-        <ReactSVG
-          src="https://firebasestorage.googleapis.com/v0/b/haniti-3aeed.appspot.com/o/plan-test.svg?alt=media"
-          onClick={onItemClick}
-          afterInjection={onSvgLoaded}
-          beforeInjection={(svg) => {
-            svg.setAttribute("width", "100vw");
-            svg.setAttribute("height", "100vh");
-            svg.setAttribute("viewBox", "0 0 116 116");
-            svg.setAttribute("preserveAspectRatio", "none");
-            svg.setAttribute("x", "0");
-            svg.setAttribute("y", "0");
+    <>
+      {!loaded && (
+        <div
+          style={{
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-        />
+        >
+          Loading...
+        </div>
       )}
+      <Body>
+        {show && (
+          <ReactSVG
+            src="https://firebasestorage.googleapis.com/v0/b/haniti-3aeed.appspot.com/o/plan-test.svg?alt=media"
+            onClick={onItemClick}
+            afterInjection={onSvgLoaded}
+          />
+        )}
 
-      <ItemPopup showPopup={showPopup} onClick={onClick} />
-    </div>
+        <ItemPopup showPopup={showPopup} onClick={onClick} />
+      </Body>
+    </>
   );
 }
 

@@ -11,19 +11,7 @@ import {
   ITEM_STATUS_BUSY,
 } from "../utils/const";
 
-const data = [
-  { id: "taranis_park_061_062_B", status: "free" },
-  { id: "taranis_park_061_062_T", status: "free" },
-  { id: "taranis_park_059_060_B" },
-  { id: "taranis_park_059_060_T", status: "free" },
-  { id: "taranis_park_111_112_B" },
-  { id: "taranis_park_111_112_T" },
-  { id: "taranis_park_113_114_T" },
-  { id: "taranis_park_113_114_B" },
-  { id: "taranis_park_140_140_T", status: "busy", mine: true },
-];
-
-export default () => {
+export default (setLoaded: any) => {
   const [parkings, setParkings] = useState<undefined | any>();
   const [svgIsReady, setSvgIsReady] = useState<boolean>(false);
   const onSvgLoaded = useCallback((err) => {
@@ -66,6 +54,19 @@ export default () => {
           mine
         );
       });
+
+      const svg = document.getElementsByTagName("svg")?.[0];
+
+      if (svg) {
+        svg.setAttribute("width", "100vw");
+        svg.setAttribute("height", "100vh");
+        svg.setAttribute("viewBox", "0 0 116 116");
+        svg.setAttribute("preserveAspectRatio", "none");
+        svg.setAttribute("x", "0");
+        svg.setAttribute("y", "0");
+      }
+
+      setLoaded(true);
     }
   }, [svgIsReady, parkings]);
 
