@@ -11,24 +11,14 @@ import {
   ITEM_STATUS_BUSY,
 } from "../utils/const";
 
-const data = [
-  { id: "taranis_park_061_062_B", status: "free" },
-  { id: "taranis_park_061_062_T", status: "free" },
-  { id: "taranis_park_059_060_B" },
-  { id: "taranis_park_059_060_T", status: "free" },
-  { id: "taranis_park_111_112_B" },
-  { id: "taranis_park_111_112_T" },
-  { id: "taranis_park_113_114_T" },
-  { id: "taranis_park_113_114_B" },
-  { id: "taranis_park_140_140_T", status: "busy", mine: true },
-];
-
-export default () => {
+export default (setLoaded: any) => {
   const [parkings, setParkings] = useState<undefined | any>();
   const [svgIsReady, setSvgIsReady] = useState<boolean>(false);
   const onSvgLoaded = useCallback((err) => {
     if (!err) {
-      setSvgIsReady(true);
+      setTimeout(() => {
+        setSvgIsReady(true);
+      }, 500);
     }
   }, []);
 
@@ -52,17 +42,31 @@ export default () => {
 
   useEffect(() => {
     if (svgIsReady && parkings) {
-      parkings.forEach(
-        ({ id, status, mine = status === ITEM_STATUS_BUSY }: any) => {
-          setMineAttrByElement(
-            setFillColorByElement(
-              getElementById(id),
-              status === ITEM_STATUS_BUSY ? BUSY_ITEM_COLOR : FREE_ITEM_COLOR
-            ),
-            mine
-          );
-        }
-      );
+      parkings.forEach(({ id, status, userId }: any) => {
+        const isBusy = status === ITEM_STATUS_BUSY && userId;
+        const mine = isBusy ? userId : "false";
+
+        setMineAttrByElement(
+          setFillColorByElement(
+            getElementById(id),
+            isBusy ? BUSY_ITEM_COLOR : FREE_ITEM_COLOR
+          ),
+          mine
+        );
+      });
+
+      const svg = document.getElementsByTagName("svg")?.[0];
+
+      if (svg) {
+        svg.setAttribute("width", "100vw");
+        svg.setAttribute("height", "100vh");
+        svg.setAttribute("viewBox", "0 0 116 116");
+        svg.setAttribute("preserveAspectRatio", "none");
+        svg.setAttribute("x", "0");
+        svg.setAttribute("y", "0");
+      }
+
+      setLoaded(true);
     }
   }, [svgIsReady, parkings]);
 
