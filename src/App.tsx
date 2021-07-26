@@ -5,25 +5,32 @@ import useLogin from "./hooks/useLogin";
 import useItem from "./hooks/useItem";
 import useInitialize from "./hooks/useInitialize";
 import ItemPopup from "./components/ItemPopup";
-import {firebaseConfig} from "./services/firebase";
-import {api} from "./services/api";
+import { firebaseConfig } from "./services/firebase";
+import { api } from "./services/api";
 
 if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 }
 const messaging = firebase.messaging();
 
-messaging.getToken({ vapidKey: process.env.REACT_APP_PUSH_KEY_PAIR }).then((currentToken) => {
+messaging
+  .getToken({ vapidKey: process.env.REACT_APP_PUSH_KEY_PAIR })
+  .then((currentToken) => {
     if (currentToken) {
-        console.log(`currentToken is: ${currentToken}`);
-        api.put(`/push-token/${currentToken}`).then((result) => console.log(result));
+      console.log(`currentToken is: ${currentToken}`);
+      api
+        .put(`/push-token/${currentToken}`)
+        .then((result) => console.log(result));
     } else {
-        // Show permission request UI
-        console.log('No registration token available. Request permission to generate one.');
+      // Show permission request UI
+      console.log(
+        "No registration token available. Request permission to generate one."
+      );
     }
-}).catch((err) => {
-    console.log('An error occurred while retrieving token. ', err);
-});
+  })
+  .catch((err) => {
+    console.log("An error occurred while retrieving token. ", err);
+  });
 
 function App() {
   const [event, setEvent] = useState();

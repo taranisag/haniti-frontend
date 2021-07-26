@@ -24,7 +24,7 @@ export default (user: any, login: any, setEvent: any, setSvgIsReady: any) => {
       const uid = user?.uid;
       const el = svg.getElementById(id);
 
-      svg.setMineAttrByElement(svg.toggleColorById(el));
+      svg.setMineAttrByElement(svg.toggleColorById(el), uid);
 
       const color = svg.getFillColorByElement(el);
 
@@ -60,6 +60,13 @@ export default (user: any, login: any, setEvent: any, setSvgIsReady: any) => {
         return login();
       }
 
+      const el = svg.getElementById(id);
+      const userIdOnEl = svg.getMineAttrByElement(el);
+
+      if (userIdOnEl !== "false" && userIdOnEl !== user.uid) {
+        return;
+      }
+
       const lastElementIndex = arr.length - 1;
       const idsElements = arr.slice(0, lastElementIndex);
       const topId = `${idsElements.join(
@@ -68,11 +75,18 @@ export default (user: any, login: any, setEvent: any, setSvgIsReady: any) => {
       const bottomId = `${idsElements.join(
         DELIMITER_ID
       )}${DELIMITER_ID}${BOTTOM_PREFIX_SVG}`;
-      const mineItem = svg.getMineItem();
+      const mineItem = svg.getMineItem(user?.uid);
       const elTop = svg.getElementById(topId);
       const elBottom = svg.getElementById(bottomId);
+      const elTopUserId = svg.getMineAttrByElement(elTop);
+      const elBottomUserId = svg.getMineAttrByElement(elBottom);
+      const elTopExist = elTop && elTopUserId === "false";
+      const elBottomExist = elBottom && elBottomUserId === "false";
+
       const onlyOneItem =
-        arr[lastElementIndex] === SINGLE_PREFIX_SVG || !elTop || !elBottom;
+        arr[lastElementIndex] === SINGLE_PREFIX_SVG ||
+        !elTopExist ||
+        !elBottomExist;
 
       if (mineItem) {
         const mineId = mineItem.id;

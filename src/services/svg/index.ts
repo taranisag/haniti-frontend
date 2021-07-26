@@ -19,8 +19,12 @@ export const getMineAttrByElement = (el: HTMLElement | null) =>
 
 export const setMineAttrByElement = (
   el: HTMLElement | null,
-  value = !(getMineAttrByElement(el) === "true")
-) => el?.setAttribute(ITEM_MINE, `${value}`);
+  value: string = "false"
+) =>
+  el?.setAttribute(
+    ITEM_MINE,
+    `${getMineAttrByElement(el) === value ? false : value}`
+  );
 
 export const toggleColorById = (el: HTMLElement | null) => {
   if (el) {
@@ -34,5 +38,5 @@ export const toggleColorById = (el: HTMLElement | null) => {
   return el;
 };
 
-export const getMineItem = () =>
-  document.querySelectorAll(`[${ITEM_MINE}='true']`)?.[0];
+export const getMineItem = (uui: string) =>
+  document.querySelectorAll(`[${ITEM_MINE}='${uui}']`)?.[0];
