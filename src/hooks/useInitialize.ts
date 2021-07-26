@@ -68,7 +68,7 @@ export default (setLoaded: any) => {
 
       setLoaded(true);
     }
-  }, [svgIsReady, parkings]);
+  }, [svgIsReady, parkings, setLoaded]);
 
   return { svgIsReady, onSvgLoaded, setSvgIsReady };
 };
