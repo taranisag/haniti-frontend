@@ -28,7 +28,9 @@ export default () => {
   const [svgIsReady, setSvgIsReady] = useState<boolean>(false);
   const onSvgLoaded = useCallback((err) => {
     if (!err) {
-      setSvgIsReady(true);
+      setTimeout(() => {
+        setSvgIsReady(true);
+      }, 500);
     }
   }, []);
 
@@ -52,17 +54,18 @@ export default () => {
 
   useEffect(() => {
     if (svgIsReady && parkings) {
-      parkings.forEach(
-        ({ id, status, mine = status === ITEM_STATUS_BUSY }: any) => {
-          setMineAttrByElement(
-            setFillColorByElement(
-              getElementById(id),
-              status === ITEM_STATUS_BUSY ? BUSY_ITEM_COLOR : FREE_ITEM_COLOR
-            ),
-            mine
-          );
-        }
-      );
+      parkings.forEach(({ id, status, userId }: any) => {
+        const isBusy = status === ITEM_STATUS_BUSY && userId;
+        const mine = isBusy ? userId : "false";
+
+        setMineAttrByElement(
+          setFillColorByElement(
+            getElementById(id),
+            isBusy ? BUSY_ITEM_COLOR : FREE_ITEM_COLOR
+          ),
+          mine
+        );
+      });
     }
   }, [svgIsReady, parkings]);
 
