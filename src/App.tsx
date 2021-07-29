@@ -20,26 +20,46 @@ const Body = styled.div`
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-const messaging = firebase.messaging();
 
-messaging
-  .getToken({ vapidKey: process.env.REACT_APP_PUSH_KEY_PAIR })
-  .then((currentToken) => {
-    if (currentToken) {
-      console.log(`currentToken is: ${currentToken}`);
-      api
-        .put(`/push-token/${currentToken}`)
-        .then((result) => console.log(result));
-    } else {
-      // Show permission request UI
-      console.log(
-        "No registration token available. Request permission to generate one."
-      );
-    }
-  })
-  .catch((err) => {
-    console.log("An error occurred while retrieving token. ", err);
-  });
+// @ts-ignore
+var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
+
+function iOS() {
+  return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+      ].includes(navigator.platform)
+      // iPad on iOS 13 detection
+      || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
+if (!isSafari && !iOS()) {
+  const messaging = firebase.messaging();
+
+  messaging
+      .getToken({ vapidKey: process.env.REACT_APP_PUSH_KEY_PAIR })
+      .then((currentToken) => {
+        if (currentToken) {
+          console.log(`currentToken is: ${currentToken}`);
+          api
+              .put(`/push-token/${currentToken}`)
+              .then((result) => console.log(result));
+        } else {
+          // Show permission request UI
+          console.log(
+              "No registration token available. Request permission to generate one."
+          );
+        }
+      })
+      .catch((err) => {
+        console.log("An error occurred while retrieving token. ", err);
+      });
+}
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
